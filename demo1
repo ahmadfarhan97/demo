@@ -1,0 +1,9 @@
+import pandas as pd
+import requests as r
+
+excel_data = pd.read_excel('test.xlsx', sheet_name='Sheet1', usecols=('A:E'))
+
+json_str = excel_data.to_json(orient="index", date_format='iso')
+
+pdObj = pd.read_json(json_str, orient='index')
+pdObj.to_csv('streaming2.csv', index=False)
